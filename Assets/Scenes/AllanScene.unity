@@ -133,7 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 19284867}
   - component: {fileID: 19284866}
-  m_Layer: 0
+  - component: {fileID: 19284868}
+  - component: {fileID: 19284869}
+  m_Layer: 6
   m_Name: Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19284865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.84, y: -4.42, z: 0}
+  m_LocalPosition: {x: 8.74, y: -4.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -170,6 +172,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &19284868
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19284865}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!61 &19284869
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19284865}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.8284153}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.3368309}
+  m_EdgeRadius: 0
 --- !u!1 &347541669
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347541670}
   - component: {fileID: 347541671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 666788858}
   - component: {fileID: 666788859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718425850}
   - component: {fileID: 718425851}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +413,7 @@ Transform:
   m_GameObject: {fileID: 718425849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.7513, y: 2.9759, z: 1}
+  m_LocalScale: {x: 1.37565, y: 1.48795, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 802140833}
@@ -551,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 802140833}
   - component: {fileID: 802140834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943823019}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Graph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +699,7 @@ Transform:
   m_GameObject: {fileID: 943823018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 718425850}
@@ -668,7 +717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994414109}
   - component: {fileID: 994414110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,7 +800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1003358715}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,7 +835,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1464364071}
   - component: {fileID: 1464364072}
-  m_Layer: 0
+  - component: {fileID: 1464364073}
+  m_Layer: 3
   m_Name: Rain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,8 +851,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464364070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.96, z: 0}
-  m_LocalScale: {x: 2.3737, y: 1.6660881, z: 1}
+  m_LocalPosition: {x: 0, y: -0.49, z: 0}
+  m_LocalScale: {x: 1.18685, y: 0.833044, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 943823019}
@@ -860,6 +910,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1464364073
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464364070}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1565833651
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +1030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1606574960}
   - component: {fileID: 1606574961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827946286}
   - component: {fileID: 1827946287}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1102,7 +1178,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1124,7 +1200,7 @@ GameObject:
   - component: {fileID: 1906848981}
   - component: {fileID: 1906848984}
   - component: {fileID: 1906848983}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1149,7 +1225,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!4 &1906848982
@@ -1162,7 +1238,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 943823019}
   m_Father: {fileID: 0}
@@ -1241,6 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e89de913d573b74f8c1556455ca3cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rain: {fileID: 1464364070}
 --- !u!1 &1997940823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997940824}
   - component: {fileID: 1997940825}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1334,7 +1411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2077653442}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graph
   m_TagString: Untagged
   m_Icon: {fileID: 0}

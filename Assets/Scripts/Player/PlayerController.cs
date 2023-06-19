@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject _rain;
+
     public Vector2 InputDir { get
         {
             if (_playerActions == null)
@@ -33,21 +35,54 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        _rain.SetActive(false);
         _playerMovement = GetComponent<PlayerMovement>();
 
         _playerActions = new MPlayerInputActions();
-        _playerActions.Player.Rain.performed += Rain_performed;
+        _playerActions.Player.Rain.started += Rain_started;
+        _playerActions.Player.Rain.canceled += Rain_canceled;
         _playerActions.Player.Move.started += Move_started;
         _playerActions.Player.Move.canceled += Move_canceled;
         _playerActions.Enable();
     }
 
-    private void Move_canceled(InputAction.CallbackContext context) => _playerMovement.UpdateCurveForTimer(0.0f);
-
+    
     private void Move_started(InputAction.CallbackContext context) => _playerMovement.UpdateCurveForTimer(0.0f);
 
-    private void Rain_performed(InputAction.CallbackContext context)
+    private void Move_canceled(InputAction.CallbackContext context) => _playerMovement.UpdateCurveForTimer(0.0f);
+
+
+    private void Rain_started(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (_rain.activeSelf == false)
+            DoRain();
+        
+    }
+    private void Rain_canceled(InputAction.CallbackContext context)
+    {
+        StopRain();
+    }
+
+    private void DoRain()
+    {
+        _rain.SetActive(true);
+    }
+
+    IEnumerator CheckRainCoroutine()
+    {
+        yield return null;
+    }
+
+    private void StopRain()
+    {
+        _rain.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.TryGetComponent<IRainable>(out  IRainable rainable))
+        {
+            rainable.TryToGetWet(this);
+        }
     }
 }
