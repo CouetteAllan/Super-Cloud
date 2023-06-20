@@ -16,6 +16,7 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private float _timer = 180.0f;
+    [SerializeField] private int _maxBuildingDestroyed = 5;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -23,9 +24,21 @@ public class GameManager : Singleton<GameManager>
 
     public float CurrentTimer { get; private set; } = 180.0f;
 
+    public int DestroyedBuilding { get; private set; } = 0;
+
     private void Start()
     {
+        Building.OnBuildingDestroyed += OnBuildingDestroyed;
         ChangeGameState(GameState.DebutGame);
+    }
+
+    private void OnBuildingDestroyed(Building building)
+    {
+        DestroyedBuilding++;
+        if(DestroyedBuilding >= _maxBuildingDestroyed)
+        {
+            ChangeGameState(GameState.GameOver);
+        }
     }
 
     public void ChangeGameState(GameState newState)
@@ -51,6 +64,7 @@ public class GameManager : Singleton<GameManager>
                 Victory();
                 break;
             case GameState.GameOver:
+                GameOver();
                 break;
         }
         OnGameStateChanged?.Invoke(newState);
@@ -79,6 +93,18 @@ public class GameManager : Singleton<GameManager>
     private void Victory()
     {
         Debug.Log("C'EST LA VICTOIRE OMG WOW");
-        Time.timeScale = 0.1f;
+        Time.timeScale = 0.5f;
     }
+
+    private void GameOver()
+    {
+        Time.timeScale = 0.5f;
+        Debug.Log("T'ES MAUVAIS");
+    }
+
+    private void OnDisable()
+    {
+        Building.OnBuildingDestroyed -= OnBuildingDestroyed;
+    }
+
 }

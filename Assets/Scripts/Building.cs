@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,17 @@ using UnityEngine;
 
 public class Building : MonoBehaviour, IRainable
 {
+    public static event Action<Building> OnBuildingDestroyed;
+
     [SerializeField] private GameObject[] _fire;
     [SerializeField] private int _fireTime = 15;
     [SerializeField] private float _baseFireLife = 10.0f;
+    [SerializeField] private SpriteRenderer _buildingSprite;
     private float _fireLife;
     private int _currentTick;
     private int _currentFireIndex;
     private bool isRaining;
+    private Color _baseColor;
 
     public enum BuildingState
     {
@@ -26,6 +31,7 @@ public class Building : MonoBehaviour, IRainable
     private void Start()
     {
         //ChangeBuildingState(BuildingState.OnFire);
+        _baseColor = _buildingSprite.color;
     }
 
     private void OnTick(uint tick)
@@ -38,6 +44,14 @@ public class Building : MonoBehaviour, IRainable
         {
             IncreaseFire(++_currentFireIndex);
             Debug.Log("Fire !" + _currentFireIndex);
+            if (_currentFireIndex > _fire.Length)
+                ChangeBuildingState(BuildingState.Destroyed);
+
+            if(_currentFireIndex > _fire.Length - 1)
+            {
+                //enclencher feedback de "bientot dead"
+                _buildingSprite.color = Color.red;
+            }
         }
     }
 
@@ -78,6 +92,7 @@ public class Building : MonoBehaviour, IRainable
                 TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
                 Debug.Log("JE NE SUIS PLUS EN FEU");
                 BuildingManager.Instance.RemoveBuildingOnFire(this);
+                _buildingSprite.color = _baseColor;
                 break;
             case BuildingState.OnFire:
                 TimeTickSystemDataHandler.OnTick += OnTick;
@@ -86,6 +101,9 @@ public class Building : MonoBehaviour, IRainable
                 IncreaseFire(0);
                 break;
             case BuildingState.Destroyed:
+                OnBuildingDestroyed?.Invoke(this);
+                SetFireActive(false);
+                this.enabled = false;
                 break;
         }
     }
@@ -112,5 +130,11 @@ public class Building : MonoBehaviour, IRainable
     public void StopGettingWet(PlayerController playerController)
     {
         isRaining = false;
+    }
+
+    private void OnDisable()
+    {
+        TimeTickSystemDataHandler.OnTick -= OnTick;
+        TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
     }
 }

@@ -26,6 +26,12 @@ public class BuildingManager : Singleton<BuildingManager>
         }
 
         TimeTickSystemDataHandler.OnTick += OnTick;
+        Building.OnBuildingDestroyed += OnBuildingDestroyed;
+    }
+
+    private void OnBuildingDestroyed(Building building)
+    {
+        BuildingsOnFire.Remove(building);
     }
 
     private void Update()
@@ -66,5 +72,7 @@ public class BuildingManager : Singleton<BuildingManager>
     private void OnDisable()
     {
         TimeTickSystemDataHandler.OnTick -= OnTick;
+        Building.OnBuildingDestroyed -= OnBuildingDestroyed;
+
     }
 }

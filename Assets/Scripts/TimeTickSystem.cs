@@ -20,6 +20,9 @@ public class TimeTickSystem : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame)
+            return;
+
         _tickTimer += Time.deltaTime;
         _tickTimerFast += Time.deltaTime;
         if(_tickTimerFast > TICK_TIMERFAST_MAX)

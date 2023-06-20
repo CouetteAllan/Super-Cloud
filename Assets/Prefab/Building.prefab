@@ -255,6 +255,7 @@ MonoBehaviour:
   - {fileID: 1985138679991621626}
   _fireTime: 20
   _baseFireLife: 15
+  _buildingSprite: {fileID: 1985138680841922249}
 --- !u!61 &1985138680090204771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -439,7 +440,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f25022f95d1396e459d2afa9d6e06ad1, type: 3}
-  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
