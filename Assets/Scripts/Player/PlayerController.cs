@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         WaterDataHandler.OnWaterEmpty += OnWaterEmpty;
         WaterDataHandler.OnWaterRefilling += OnWaterRefilling;
+        WaterDataHandler.OnWaterFull += OnWaterFull;
 
         _playerActions = new MPlayerInputActions();
         _playerActions.Player.Rain.started += Rain_started;
@@ -56,9 +57,15 @@ public class PlayerController : MonoBehaviour
         _playerActions.Enable();
     }
 
+    private void OnWaterFull()
+    {
+        _animator.SetBool("Refuel", false);
+    }
+
     private void OnWaterRefilling()
     {
         _canRain = true;
+        _animator.SetBool("Refuel", true);
     }
 
     private void OnWaterEmpty()
@@ -93,6 +100,7 @@ public class PlayerController : MonoBehaviour
         this.UsingWater();
         _rain.SetActive(true);
         _animator.SetBool("IsRaining", true);
+        _animator.SetBool("Refuel", false);
         _rainParticle.Play();
     }
 

@@ -505,6 +505,30 @@ MonoBehaviour:
   _drainWaterPerTick: 2
   _refillWaterPerTick: 10
   _graphTransform: {fileID: 2113429471541840028}
+  _speedChangeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5
+      inSlope: 0.49438766
+      outSlope: 0.49438766
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.32916668
+    - serializedVersion: 3
+      time: 1
+      value: 8
+      inSlope: 0.055373233
+      outSlope: 0.055373233
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.38333333
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5218856798747626201
 GameObject:
   m_ObjectHideFlags: 0

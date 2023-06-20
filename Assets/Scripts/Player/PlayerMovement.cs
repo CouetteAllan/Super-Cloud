@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerController _playerController;
     private float _timerCurve;
 
+    public float Speed { get { return _speed; } set {  _speed = value; } }
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();

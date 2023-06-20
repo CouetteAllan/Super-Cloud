@@ -9,10 +9,14 @@ public class WaterHandle : MonoBehaviour
     [SerializeField] private float _drainWaterPerTick = 1.0f;
     [SerializeField] private float _refillWaterPerTick = 10.0f;
     [SerializeField] private Transform _graphTransform;
+    [SerializeField] private AnimationCurve _speedChangeCurve;
+
+    private PlayerMovement _playerMovement;
     private float _currentWater;
     private float _targetScale = 1.0f;
     private float _baseScale = 2.0f;
     private bool _onTopOfRefill = false;
+    private float _baseSpeed;
 
     private enum WaterState
     {
@@ -20,7 +24,12 @@ public class WaterHandle : MonoBehaviour
         Refilling,
         None
     }
-    private WaterState _state;
+    private WaterState _state = WaterState.None;
+
+    private void Awake()
+    {
+        _playerMovement = GetComponent<PlayerMovement>();
+    }
 
     private void Start()
     {
@@ -29,6 +38,7 @@ public class WaterHandle : MonoBehaviour
         TimeTickSystemDataHandler.OnTick += OnTick;
 
         _currentWater = _maxWater;
+        _baseSpeed = _playerMovement.Speed;
     }
 
     private void OnUsingWater()
@@ -46,12 +56,13 @@ public class WaterHandle : MonoBehaviour
                 if (_currentWater <= 0)
                 {
                     this.WaterEmpty();
-                    TimeTickSystemDataHandler.OnTick -= OnTick;
+                    _state = WaterState.None;
                 }
                 var currentScaleMinus = _graphTransform.localScale;
                 currentScaleMinus.x = Mathf.Clamp(_graphTransform.localScale.x - (((_baseScale / _maxWater) / 2) * _drainWaterPerTick), 1.0f, 2.0f);
                 currentScaleMinus.y = Mathf.Clamp(_graphTransform.localScale.y - (((_baseScale / _maxWater) / 2) * _drainWaterPerTick), 1.0f, 2.0f);
                 _graphTransform.localScale = currentScaleMinus;
+                _playerMovement.Speed = _speedChangeCurve.Evaluate(1 - (_currentWater / _maxWater));
                 break;
 
             case WaterState.Refilling:
@@ -61,6 +72,7 @@ public class WaterHandle : MonoBehaviour
                 currentScalePlus.y = Mathf.Clamp(_graphTransform.localScale.y + (((_baseScale / _maxWater) / 2) * _refillWaterPerTick), 1.0f, 2.0f);
                 _graphTransform.localScale = currentScalePlus;
                 Debug.Log("Water Level: " + _currentWater);
+                _playerMovement.Speed = _speedChangeCurve.Evaluate(1 - (_currentWater / _maxWater));
                 if (_currentWater >= _maxWater)
                 {
                     this.WaterFull();
