@@ -73,7 +73,7 @@ public class WaterHandle : MonoBehaviour
                 currentScalePlus.y = Mathf.Clamp(_graphTransform.localScale.y + (((_baseScale / _maxWater) / 2) * _refillWaterPerTick), 1.0f, 2.0f);
                 _graphTransform.localScale = currentScalePlus;
                 _rainParticleTransform.localScale = currentScalePlus;
-
+                SoundManager.Instance.Play("Boing");
                 Debug.Log("Water Level: " + _currentWater);
                 _playerMovement.Speed = _speedChangeCurve.Evaluate(1 - (_currentWater / _maxWater));
                 if (_currentWater >= _maxWater)
