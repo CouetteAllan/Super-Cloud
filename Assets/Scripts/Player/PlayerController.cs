@@ -86,6 +86,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.TryGetComponent<IRainable>(out IRainable rainable))
+        {
+            rainable.StopGettingWet(this);
+        }
+    }
+
     private void OnDisable()
     {
         _playerActions.Player.Rain.started -= Rain_started;

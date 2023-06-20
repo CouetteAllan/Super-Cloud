@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IRainable
 {
     public void TryToGetWet(PlayerController playerController);
+    public void StopGettingWet(PlayerController playerController);
 }
