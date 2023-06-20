@@ -14,6 +14,8 @@ public class Building : MonoBehaviour, IRainable
     [SerializeField] private Image _fireLifeImage;
     [SerializeField] private SpriteRenderer _buildingSprite;
     [SerializeField] private Sprite _ruinedBuilding;
+    [SerializeField] private AudioSource _buildingAudioSource;
+
     private bool _showFireLife;
     private float _fireLife;
     private int _currentTick;
@@ -91,6 +93,8 @@ public class Building : MonoBehaviour, IRainable
                 Debug.Log("JE NE SUIS PLUS EN FEU");
                 BuildingManager.Instance.RemoveBuildingOnFire(this);
                 _buildingSprite.color = _baseColor;
+                _buildingAudioSource.Stop();
+
                 break;
 
             case BuildingState.OnFire:
@@ -98,6 +102,7 @@ public class Building : MonoBehaviour, IRainable
                 TimeTickSystemDataHandler.OnTick += OnTick;
                 TimeTickSystemDataHandler.OnTickFaster += OnTickFaster;
                 SoundManager.Instance.Play("Thunder");
+                _buildingAudioSource.Play();
                 _fireLife = _baseFireLife;
                 IncreaseFire(0);
                 break;
@@ -110,6 +115,7 @@ public class Building : MonoBehaviour, IRainable
                 _buildingSprite.color = _baseColor;
                 _buildingSprite.sprite = _ruinedBuilding;
                 this.enabled = false;
+                _buildingAudioSource.Stop();
                 break;
         }
     }

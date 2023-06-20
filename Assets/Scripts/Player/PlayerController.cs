@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("IsRaining", true);
         _animator.SetBool("Refuel", false);
         _rainParticle.Play();
+        SoundManager.Instance.Play("Rain");
     }
 
     private void StopRain()
@@ -116,6 +117,8 @@ public class PlayerController : MonoBehaviour
         _rain.SetActive(false);
         _animator.SetBool("IsRaining", false);
         _rainParticle.Stop();
+        SoundManager.Instance.StopSound("Rain");
+
 
     }
 

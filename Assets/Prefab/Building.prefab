@@ -483,6 +483,7 @@ MonoBehaviour:
   _fireLifeImage: {fileID: 5528087120511624767}
   _buildingSprite: {fileID: 1985138680841922249}
   _ruinedBuilding: {fileID: 21300000, guid: 5b3cc36c65f10f34d9107f7affbe5895, type: 3}
+  _buildingAudioSource: {fileID: 3391577419424623631}
 --- !u!61 &1985138680090204771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -807,16 +808,16 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -779257344413149368, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
   m_audioClip: {fileID: 8300000, guid: 753a3fe0819c98d419ca127bbcb6f4ca, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.03
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 200
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 4.145131
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
