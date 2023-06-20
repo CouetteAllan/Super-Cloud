@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject _rain;
+    [SerializeField] private BoxCollider2D _rainCollision;
+    [SerializeField] private LayerMask _layerRain;
 
     public Vector2 InputDir { get
         {
@@ -80,7 +82,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<IRainable>(out  IRainable rainable))
+
+        if(collision.TryGetComponent<IRainable>(out  IRainable rainable) && _rainCollision.IsTouchingLayers(_layerRain))
         {
             rainable.TryToGetWet(this);
         }
@@ -88,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<IRainable>(out IRainable rainable))
+        if(collision.TryGetComponent<IRainable>(out IRainable rainable) && !_rainCollision.IsTouchingLayers(_layerRain))
         {
             rainable.StopGettingWet(this);
         }

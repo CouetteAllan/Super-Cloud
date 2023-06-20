@@ -77,6 +77,7 @@ public class Building : MonoBehaviour, IRainable
                 TimeTickSystemDataHandler.OnTick -= OnTick;
                 TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
                 Debug.Log("JE NE SUIS PLUS EN FEU");
+                BuildingManager.Instance.RemoveBuildingOnFire(this);
                 break;
             case BuildingState.OnFire:
                 TimeTickSystemDataHandler.OnTick += OnTick;
