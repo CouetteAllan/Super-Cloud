@@ -32,6 +32,7 @@ Transform:
   - {fileID: 4016023034564297862}
   - {fileID: 4016023034691517786}
   - {fileID: 4016023034997050844}
+  - {fileID: 7062382345086859052}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -171,6 +172,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPersistant: 0
   _timer: 180
+  _maxBuildingDestroyed: 5
+--- !u!1 &4413968778692280746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7062382345086859052}
+  - component: {fileID: 6788033981428172321}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7062382345086859052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413968778692280746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4016023034536647819}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6788033981428172321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413968778692280746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf792344cd868448a41cb45239daf78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPersistant: 0
+  soundsEffects:
+  - name: Thunder
+    clip: {fileID: 8300000, guid: af5961be4d9bd2f40aba0106cf15fa74, type: 3}
+    output: {fileID: -779257344413149368, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
+    volume: 0.658
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 8300000, guid: 2a3483cb9be31f04cbee7fa3a41301d0, type: 3}
+    output: {fileID: -779257344413149368, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
+    volume: 0.433
+    pitch: 0
+    loop: 1
+    playOnAwake: 1
+    source: {fileID: 0}
+  musics: []
+  audioMix: {fileID: 24100000, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
+  masterVolume: 0
+  musicVolume: 0
+  sfxVolume: 0
 --- !u!1001 &5443072233008705886
 PrefabInstance:
   m_ObjectHideFlags: 0
