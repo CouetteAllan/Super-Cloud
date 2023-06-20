@@ -25,7 +25,7 @@ public class Building : MonoBehaviour, IRainable
     
     private void Start()
     {
-        ChangeBuildingState(BuildingState.OnFire);
+        //ChangeBuildingState(BuildingState.OnFire);
     }
 
     private void OnTick(uint tick)
@@ -65,7 +65,7 @@ public class Building : MonoBehaviour, IRainable
         }
     }
 
-    private void ChangeBuildingState(BuildingState newState)
+    public void ChangeBuildingState(BuildingState newState)
     {
         if (newState == _currentState)
             return;

@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b7ad559b54bf342b31929d06c3e5e8, type: 3}
+  m_Name: New BuildingManagerData
+  m_EditorClassIdentifier: 
+  IntervalTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 10
+      inSlope: 0.0033101533
+      outSlope: 0.0033101533
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.90383154
+    - serializedVersion: 3
+      time: 49.84809
+      value: 9.0027
+      inSlope: -0.018773193
+      outSlope: -0.018773193
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34780148
+      outWeight: 1
+    - serializedVersion: 3
+      time: 63.06485
+      value: 6.975062
+      inSlope: -0.04600283
+      outSlope: -0.04600283
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10918048
+    - serializedVersion: 3
+      time: 179.25
+      value: 5
+      inSlope: 0.0011230953
+      outSlope: 0.0011230953
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.271119
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MaxIntervalTime: 10
+  MinIntervalTime: 5
+  BuildingNumber:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 180
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  EarlyMaxBuildingOnFire: 2
+  LateMaxBuildingOnFire: 5
