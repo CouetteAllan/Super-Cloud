@@ -2,8 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.UI;
 
 public class Building : MonoBehaviour, IRainable
 {
@@ -12,7 +11,9 @@ public class Building : MonoBehaviour, IRainable
     [SerializeField] private GameObject[] _fire;
     [SerializeField] private int _fireTime = 15;
     [SerializeField] private float _baseFireLife = 10.0f;
+    [SerializeField] private Image _fireLifeImage;
     [SerializeField] private SpriteRenderer _buildingSprite;
+    private bool _showFireLife;
     private float _fireLife;
     private int _currentTick;
     private int _currentFireIndex;
@@ -62,21 +63,18 @@ public class Building : MonoBehaviour, IRainable
 
         float tickRate = 1.0f;
         _fireLife -= tickRate;
-        if(_fireLife <= 0)
+        _fireLifeImage.transform.parent.gameObject.SetActive(true);
+        _fireLifeImage.fillAmount = 1 - (_fireLife / _baseFireLife);
+        if (_fireLife <= 0)
         {
             ChangeBuildingState(BuildingState.Normal);
+            _fireLifeImage.transform.parent.gameObject.SetActive(false);
         }
     }
 
     public void TryToGetWet(PlayerController playerController)
     {
         isRaining = true;
-        if(_currentState == BuildingState.OnFire)
-        {
-            //Commence à éteindre le feu et diminuer la "vie" du feu au fur et à mesure qu'on pluite dessus
-            //ChangeBuildingState(BuildingState.Normal);
-
-        }
     }
 
     public void ChangeBuildingState(BuildingState newState)
