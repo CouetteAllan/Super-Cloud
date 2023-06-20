@@ -27,6 +27,20 @@ public class BuildingManager : Singleton<BuildingManager>
 
         TimeTickSystemDataHandler.OnTick += OnTick;
         Building.OnBuildingDestroyed += OnBuildingDestroyed;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    private void OnGameStateChanged(GameState state)
+    {
+        if(state == GameState.Victory)
+        {
+            foreach (var building in BuildingsOnFire)
+            {
+                building.ChangeBuildingState(Building.BuildingState.Normal);
+                Buildings.Add(building);
+            }
+            BuildingsOnFire.Clear();
+        }
     }
 
     private void OnBuildingDestroyed(Building building)
@@ -36,6 +50,9 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame)
+            return;
+
         if (BuildingsOnFire.Count >= Mathf.CeilToInt(_datas.BuildingNumber.Evaluate(Time.realtimeSinceStartup)) || _canFireBuilding)
             return;
 

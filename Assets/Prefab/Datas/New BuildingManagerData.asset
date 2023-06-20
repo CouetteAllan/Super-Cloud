@@ -34,8 +34,8 @@ MonoBehaviour:
       inWeight: 0.34780148
       outWeight: 1
     - serializedVersion: 3
-      time: 95.18048
-      value: 6.2782845
+      time: 74.25677
+      value: 5.3590217
       inSlope: -0.020730313
       outSlope: -0.020730313
       tangentMode: 0
@@ -43,8 +43,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.3159307
     - serializedVersion: 3
-      time: 179.25
-      value: 5
+      time: 180
+      value: 4
       inSlope: 0.0011230953
       outSlope: 0.0011230953
       tangentMode: 0
@@ -55,22 +55,22 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MaxIntervalTime: 8
-  MinIntervalTime: 5
+  MinIntervalTime: 4
   BuildingNumber:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 2
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.02156921
+      outSlope: 0.02156921
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.07107438
     - serializedVersion: 3
       time: 180
-      value: 5
+      value: 7
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -81,4 +81,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EarlyMaxBuildingOnFire: 2
-  LateMaxBuildingOnFire: 5
+  LateMaxBuildingOnFire: 7

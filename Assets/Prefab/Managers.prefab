@@ -238,7 +238,7 @@ MonoBehaviour:
   - name: Rain
     clip: {fileID: 8300000, guid: 1043f778dba64504c82cdbd2b5e3532f, type: 3}
     output: {fileID: -779257344413149368, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
-    volume: 0.09
+    volume: 0.201
     pitch: 0
     loop: 1
     playOnAwake: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   - name: Chill1
     clip: {fileID: 8300000, guid: b168e5327af7e7542902f2eb0885ab11, type: 3}
     output: {fileID: -3403539666189480803, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
-    volume: 0.64
+    volume: 0.686
     pitch: 0
     loop: 1
     playOnAwake: 1
@@ -271,6 +271,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4016023034536647819}
     m_Modifications:
+    - target: {fileID: 1703675000929468771, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703675000929468771, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703675000929468771, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703675000929468771, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908802034573240360, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908802034573240360, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908802034573240360, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908802034573240360, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8949333020368401880, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -318,6 +350,22 @@ PrefabInstance:
     - target: {fileID: 8949333020368401881, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096357171051213847, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096357171051213847, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096357171051213847, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096357171051213847, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13ff3145a8c123849adc508d8096e0e4, type: 3}

@@ -55,7 +55,34 @@ public class PlayerController : MonoBehaviour
         _playerActions.Player.Move.started += Move_started;
         _playerActions.Player.Move.canceled += Move_canceled;
         _playerActions.Player.Move.performed += Move_performed;
-        _playerActions.Enable();
+        GameManager.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    private void OnGameStateChanged(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.DebutGame:
+                _playerActions.Enable();
+                break;
+
+            case GameState.PauseGame:
+                _playerActions.Disable();
+                break;
+
+            case GameState.Victory:
+                _playerActions.Disable();
+                break;
+
+            case GameState.GameOver:
+                _playerActions.Disable();
+                break;
+
+            case GameState.MainMenu:
+                _playerActions.Disable();
+                break;
+        }
+
     }
 
     private void OnStopWaterRefilling()
@@ -78,6 +105,8 @@ public class PlayerController : MonoBehaviour
     {
         _canRain = false;
         Rain_canceled(new InputAction.CallbackContext { });
+        SoundManager.Instance.StopSound("Rain");
+
     }
 
     private void Move_performed(InputAction.CallbackContext obj)

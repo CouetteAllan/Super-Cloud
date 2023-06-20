@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         Building.OnBuildingDestroyed += OnBuildingDestroyed;
-        ChangeGameState(GameState.DebutGame);
+        ChangeGameState(GameState.MainMenu);
     }
 
     private void OnBuildingDestroyed(Building building)
