@@ -48,7 +48,7 @@ public class Building : MonoBehaviour, IRainable
             if (_currentFireIndex > _fire.Length)
                 ChangeBuildingState(BuildingState.Destroyed);
 
-            if(_currentFireIndex > _fire.Length - 1)
+            if(_currentFireIndex > _fire.Length - 1 && IsAlive())
             {
                 //enclencher feedback de "bientot dead"
                 _buildingSprite.color = Color.red;
@@ -82,6 +82,7 @@ public class Building : MonoBehaviour, IRainable
         if (newState == _currentState)
             return;
         _currentState = newState;
+        if (this.gameObject.name.Contains("test"))
         switch (_currentState)
         {
             case BuildingState.Normal:
@@ -99,6 +100,8 @@ public class Building : MonoBehaviour, IRainable
                 IncreaseFire(0);
                 break;
             case BuildingState.Destroyed:
+                TimeTickSystemDataHandler.OnTick -= OnTick;
+                TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
                 OnBuildingDestroyed?.Invoke(this);
                 SetFireActive(false);
                 _buildingSprite.color = _baseColor;
@@ -131,6 +134,8 @@ public class Building : MonoBehaviour, IRainable
     {
         isRaining = false;
     }
+
+    private bool IsAlive() => _currentFireIndex <= _fire.Length;
 
     private void OnDisable()
     {
