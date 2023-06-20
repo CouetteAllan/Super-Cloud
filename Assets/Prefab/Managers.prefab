@@ -238,7 +238,7 @@ MonoBehaviour:
   - name: Rain
     clip: {fileID: 8300000, guid: 1043f778dba64504c82cdbd2b5e3532f, type: 3}
     output: {fileID: -779257344413149368, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
-    volume: 0.442
+    volume: 0.09
     pitch: 0
     loop: 1
     playOnAwake: 0
