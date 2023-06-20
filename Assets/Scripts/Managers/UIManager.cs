@@ -11,8 +11,11 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _buildingPanel;
     [SerializeField] private GameObject _pauseGO;
     [SerializeField] private GameObject _mainMenuGO;
+    [SerializeField] private GameObject _mainMenuBackground;
     [SerializeField] private GameObject _victoryGO;
     [SerializeField] private GameObject _gameOverGO;
+
+    private Animator _pauseAnimator;
 
     private enum PanelType
     {
@@ -26,6 +29,7 @@ public class UIManager : Singleton<UIManager>
     private void Start()
     {
         GameManager.OnGameStateChanged += OnGameStateChanged;
+        _pauseAnimator = _pauseGO.GetComponent<Animator>();
     }
 
     private void OnGameStateChanged(GameState newState)
@@ -35,7 +39,7 @@ public class UIManager : Singleton<UIManager>
             case GameState.MainMenu:
                 DisplayPanel(PanelType.MainMenu);
                 _buildingPanel.SetActive(false);
-
+                _pauseAnimator.SetTrigger("Close");
                 break;
             case GameState.DebutGame:
                 _mainMenuGO.SetActive(false);
@@ -44,12 +48,12 @@ public class UIManager : Singleton<UIManager>
                 break;
             case GameState.InGame:
                 DisplayPanel(PanelType.None);
-
+                _pauseAnimator.SetTrigger("Close");
                 //Hide pause panel
                 break;
             case GameState.PauseGame:
                 DisplayPanel(PanelType.Pause);
-
+                _pauseAnimator.SetTrigger("Open");
                 //Display pause panel
                 break;
             case GameState.Victory:
@@ -88,6 +92,8 @@ public class UIManager : Singleton<UIManager>
         {
             case PanelType.MainMenu:
                 _mainMenuGO.SetActive(true);
+                _mainMenuBackground.SetActive(true);
+                _mainMenuBackground.GetComponent<FadeImageTitle>().Revert();
                 _pauseGO.SetActive(false);
                 _gameOverGO.SetActive(false);
                 _victoryGO.SetActive(false);
@@ -141,6 +147,16 @@ public class UIManager : Singleton<UIManager>
     public void Credits()
     {
 
+    }
+
+    public void Resume()
+    {
+        GameManager.Instance.ChangeGameState(GameState.InGame);
+    }
+
+    public void MainMenu()
+    {
+        GameManager.Instance.ChangeGameState(GameState.MainMenu);
     }
 
     #endregion

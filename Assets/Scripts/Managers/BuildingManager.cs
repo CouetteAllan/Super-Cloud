@@ -32,7 +32,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void OnGameStateChanged(GameState state)
     {
-        if(state == GameState.Victory)
+        if(state == GameState.Victory || state == GameState.MainMenu)
         {
             foreach (var building in BuildingsOnFire)
             {

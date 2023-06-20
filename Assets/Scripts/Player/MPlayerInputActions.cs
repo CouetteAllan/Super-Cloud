@@ -55,6 +55,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3278df6-3267-467b-9246-ee3ee4490031"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -264,6 +273,28 @@ namespace Input
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Thunder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56cdcc93-e6e7-453f-aaed-8b0312fd94de"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06f0c744-b9ba-48a9-b1de-e727e45d5aba"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -854,6 +885,7 @@ namespace Input
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Rain = m_Player.FindAction("Rain", throwIfNotFound: true);
             m_Player_Thunder = m_Player.FindAction("Thunder", throwIfNotFound: true);
+            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -930,6 +962,7 @@ namespace Input
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Rain;
         private readonly InputAction m_Player_Thunder;
+        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @MPlayerInputActions m_Wrapper;
@@ -937,6 +970,7 @@ namespace Input
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Rain => m_Wrapper.m_Player_Rain;
             public InputAction @Thunder => m_Wrapper.m_Player_Thunder;
+            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -955,6 +989,9 @@ namespace Input
                 @Thunder.started += instance.OnThunder;
                 @Thunder.performed += instance.OnThunder;
                 @Thunder.canceled += instance.OnThunder;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -968,6 +1005,9 @@ namespace Input
                 @Thunder.started -= instance.OnThunder;
                 @Thunder.performed -= instance.OnThunder;
                 @Thunder.canceled -= instance.OnThunder;
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1153,6 +1193,7 @@ namespace Input
             void OnMove(InputAction.CallbackContext context);
             void OnRain(InputAction.CallbackContext context);
             void OnThunder(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

@@ -2721,7 +2721,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 82.7
+  field of view: 94.94
   orthographic: 0
   orthographic size: 5.28
   m_Depth: -1
@@ -2747,7 +2747,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565833651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: -10}
+  m_LocalPosition: {x: -1.2, y: -0.26, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2925,7 +2925,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 82.7
+    FieldOfView: 94.94
     OrthographicSize: 5.28
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -2950,7 +2950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686907816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: -10}
+  m_LocalPosition: {x: -1.2, y: -0.26, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3276,16 +3276,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 391446412235120751, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2758482084717222262, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2758482084717222262, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758482084717222262, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758482084717222262, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2758482084717222262, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
@@ -3304,16 +3308,20 @@ PrefabInstance:
       propertyPath: _camMainMenu
       value: 
       objectReference: {fileID: 1686907817}
-    - target: {fileID: 3128973982439360341, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: _orageGameObject
-      value: 
-      objectReference: {fileID: 925524199}
     - target: {fileID: 3870120386004976969, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3870120386004976969, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870120386004976969, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870120386004976969, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3870120386004976969, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
@@ -3372,6 +3380,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4016023035886950651, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: _orage
+      value: 
+      objectReference: {fileID: 925524199}
     - target: {fileID: 6641971865115684925, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3381,48 +3393,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6641971865115684925, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641971865115684925, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641971865115684925, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6641971865115684925, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[0].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 721e0d91d27883149b2da6abd60827a8, type: 3}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[1].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[1].name
-      value: MainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[1].output
-      value: 
-      objectReference: {fileID: -3403539666189480803, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[1].volume
-      value: 0.408
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[0].playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788033981428172321, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
-      propertyPath: musics.Array.data[1].playOnAwake
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}

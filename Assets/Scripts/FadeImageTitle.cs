@@ -7,6 +7,13 @@ public class FadeImageTitle : MonoBehaviour
 {
     [SerializeField] Image _image;
 
+
+    public void Revert()
+    {
+        _image.color = Color.white;
+        
+    }
+
     public void Fade()
     {
         StartCoroutine(FadeCoroutine());
@@ -26,5 +33,10 @@ public class FadeImageTitle : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    private void OnDisable()
+    {
+
     }
 }

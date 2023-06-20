@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager>
         switch (CurrentState)
         {
             case GameState.MainMenu:
+                Time.timeScale = 1.0f;
                 CameraManager.Instance.SwitchCamera(toCamGame: false);
                 _orage.SetActive(false);
                 break;

@@ -55,33 +55,23 @@ public class PlayerController : MonoBehaviour
         _playerActions.Player.Move.started += Move_started;
         _playerActions.Player.Move.canceled += Move_canceled;
         _playerActions.Player.Move.performed += Move_performed;
+        _playerActions.Player.Pause.performed += Pause_performed;
         GameManager.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    private void Pause_performed(InputAction.CallbackContext context)
+    {
+        GameManager.Instance.ChangeGameState(GameState.PauseGame);
     }
 
     private void OnGameStateChanged(GameState state)
     {
-        switch (state)
+        if (state == GameState.InGame)
         {
-            case GameState.DebutGame:
-                _playerActions.Enable();
-                break;
-
-            case GameState.PauseGame:
-                _playerActions.Disable();
-                break;
-
-            case GameState.Victory:
-                _playerActions.Disable();
-                break;
-
-            case GameState.GameOver:
-                _playerActions.Disable();
-                break;
-
-            case GameState.MainMenu:
-                _playerActions.Disable();
-                break;
+            _playerActions.Enable();
         }
+        else
+            _playerActions.Disable();
 
     }
 
