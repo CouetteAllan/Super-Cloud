@@ -50,7 +50,7 @@ public class UIManager : Singleton<UIManager>
         // magie noire ogm
         // en gros juste on affiche "minutes : secondes"
         // et si les secondes sont < 10 on ajoute un 0 devant 
-        string joliTempsPouceEnLair = $"{m}:{(s > 10 ? s : ("0" + s))}";
+        string joliTempsPouceEnLair = $"{m}:{(s >= 10 ? s : ("0" + s))}";
         _timerText.text = joliTempsPouceEnLair;
     }
 }
