@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private float _timer = 180.0f;
     [SerializeField] private int _maxBuildingDestroyed = 5;
+    [SerializeField] private GameObject _orage; //c'est super sale mais faut pas dire
     public int MaxBuildingDestroyed { get => _maxBuildingDestroyed; }
 
     public static event Action<GameState> OnGameStateChanged;
@@ -52,9 +53,10 @@ public class GameManager : Singleton<GameManager>
         {
             case GameState.MainMenu:
                 CameraManager.Instance.SwitchCamera(toCamGame: false);
+                _orage.SetActive(false);
                 break;
             case GameState.DebutGame:
-                LaunchTimer();
+                DelayLaunchGame();
                 break;
             case GameState.InGame:
                 Time.timeScale = 1.0f;
@@ -93,13 +95,14 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator DelayStartCoroutine()
     {
-
-        yield return null;
+        CameraManager.Instance.SwitchCamera(toCamGame: true);
+        yield return new WaitForSeconds(2.0f);
+        LaunchTimer();
     }
     private void LaunchTimer()
     {
         CurrentTimer = _timer;
-        CameraManager.Instance.SwitchCamera(toCamGame: true);
+        _orage.SetActive(true);
         ChangeGameState(GameState.InGame);
     }
 

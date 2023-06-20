@@ -2807,7 +2807,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 2.5
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -3276,6 +3276,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 391446412235120751, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2758482084717222262, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

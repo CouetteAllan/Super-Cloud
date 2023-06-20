@@ -34,10 +34,12 @@ public class UIManager : Singleton<UIManager>
         {
             case GameState.MainMenu:
                 DisplayPanel(PanelType.MainMenu);
+                _buildingPanel.SetActive(false);
 
                 break;
             case GameState.DebutGame:
-                DisplayPanel(PanelType.None);
+                _mainMenuGO.SetActive(false);
+
 
                 break;
             case GameState.InGame:

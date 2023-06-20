@@ -30,6 +30,7 @@ public class UIBuildingCounter : MonoBehaviour
             buildingImages.Push(goImg);
         }
         Building.OnBuildingDestroyed += DestroyBuildingInUI;
+        this.gameObject.SetActive(false);
     }
 
     private void DestroyBuildingInUI(Building b)
