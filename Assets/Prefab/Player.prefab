@@ -229,8 +229,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113429471894584337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4198, z: 0}
-  m_LocalScale: {x: 0.79123336, y: 0.75498337, z: 1}
+  m_LocalPosition: {x: 0.0298, y: -0.4581, z: 0}
+  m_LocalScale: {x: 0.7316535, y: 0.6783526, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2113429471541840028}
@@ -278,7 +278,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.051886797, g: 1, b: 0.921469, a: 0.13333334}
+  m_Color: {r: 0.051886797, g: 1, b: 0.921469, a: 0.105882354}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -505,6 +505,7 @@ MonoBehaviour:
   _drainWaterPerTick: 2
   _refillWaterPerTick: 10
   _graphTransform: {fileID: 2113429471541840028}
+  _rainParticleTransform: {fileID: 1664306462612884929}
   _speedChangeCurve:
     serializedVersion: 2
     m_Curve:
@@ -556,7 +557,7 @@ Transform:
   m_GameObject: {fileID: 5218856798747626201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.016615905, y: -0.24237889, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2113429471541840028}
@@ -578,7 +579,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -814,8 +815,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.1
+      scalar: 0.2
+      minScalar: 0.05
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2877,7 +2878,7 @@ ParticleSystem:
     randomizePerFrame: 0
   ExternalForcesModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     multiplierCurve:
       serializedVersion: 2
       minMaxState: 0

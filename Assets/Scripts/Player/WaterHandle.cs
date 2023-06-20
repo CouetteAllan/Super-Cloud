@@ -9,11 +9,11 @@ public class WaterHandle : MonoBehaviour
     [SerializeField] private float _drainWaterPerTick = 1.0f;
     [SerializeField] private float _refillWaterPerTick = 10.0f;
     [SerializeField] private Transform _graphTransform;
+    [SerializeField] private Transform _rainParticleTransform;
     [SerializeField] private AnimationCurve _speedChangeCurve;
 
     private PlayerMovement _playerMovement;
     private float _currentWater;
-    private float _targetScale = 1.0f;
     private float _baseScale = 2.0f;
     private bool _onTopOfRefill = false;
     private float _baseSpeed;
@@ -62,6 +62,7 @@ public class WaterHandle : MonoBehaviour
                 currentScaleMinus.x = Mathf.Clamp(_graphTransform.localScale.x - (((_baseScale / _maxWater) / 2) * _drainWaterPerTick), 1.0f, 2.0f);
                 currentScaleMinus.y = Mathf.Clamp(_graphTransform.localScale.y - (((_baseScale / _maxWater) / 2) * _drainWaterPerTick), 1.0f, 2.0f);
                 _graphTransform.localScale = currentScaleMinus;
+                _rainParticleTransform.localScale = currentScaleMinus;
                 _playerMovement.Speed = _speedChangeCurve.Evaluate(1 - (_currentWater / _maxWater));
                 break;
 
@@ -71,12 +72,15 @@ public class WaterHandle : MonoBehaviour
                 currentScalePlus.x = Mathf.Clamp(_graphTransform.localScale.x + (((_baseScale / _maxWater) / 2) * _refillWaterPerTick), 1.0f, 2.0f);
                 currentScalePlus.y = Mathf.Clamp(_graphTransform.localScale.y + (((_baseScale / _maxWater) / 2) * _refillWaterPerTick), 1.0f, 2.0f);
                 _graphTransform.localScale = currentScalePlus;
+                _rainParticleTransform.localScale = currentScalePlus;
+
                 Debug.Log("Water Level: " + _currentWater);
                 _playerMovement.Speed = _speedChangeCurve.Evaluate(1 - (_currentWater / _maxWater));
                 if (_currentWater >= _maxWater)
                 {
                     this.WaterFull();
                     _state = WaterState.None;
+                    _graphTransform.localScale = new Vector3(2.0f,2.0f);
                 }
                 break;
 
@@ -110,6 +114,7 @@ public class WaterHandle : MonoBehaviour
     {
         _state = WaterState.None;
         _onTopOfRefill = false;
+        this.StopWaterRefilling();
     }
 
     private void OnDisable()
