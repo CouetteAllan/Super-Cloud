@@ -96,6 +96,8 @@ public class WaterHandle : MonoBehaviour
 
     public void Refuel()
     {
+        if (_state == WaterState.Using)
+            return;
         _state = WaterState.Refilling;
         _onTopOfRefill = true;
         if(_currentWater < 0)
