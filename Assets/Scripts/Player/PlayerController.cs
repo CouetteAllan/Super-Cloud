@@ -7,8 +7,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject _rain;
+    [SerializeField] private ParticleSystem _rainParticle;
     [SerializeField] private BoxCollider2D _rainCollision;
     [SerializeField] private LayerMask _layerRain;
+
+    private Animator _animator;
 
     public Vector2 InputDir { get
         {
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        _animator = GetComponent<Animator>();
         _rain.SetActive(false);
         _playerMovement = GetComponent<PlayerMovement>();
 
@@ -45,10 +49,15 @@ public class PlayerController : MonoBehaviour
         _playerActions.Player.Rain.canceled += Rain_canceled;
         _playerActions.Player.Move.started += Move_started;
         _playerActions.Player.Move.canceled += Move_canceled;
+        _playerActions.Player.Move.performed += Move_performed;
         _playerActions.Enable();
     }
 
-    
+    private void Move_performed(InputAction.CallbackContext obj)
+    {
+        _animator.SetFloat("Dir", _playerActions.Player.Move.ReadValue<Vector2>().x);
+    }
+
     private void Move_started(InputAction.CallbackContext context) => _playerMovement.UpdateCurveForTimer(0.0f);
 
     private void Move_canceled(InputAction.CallbackContext context) => _playerMovement.UpdateCurveForTimer(0.0f);
@@ -68,16 +77,16 @@ public class PlayerController : MonoBehaviour
     private void DoRain()
     {
         _rain.SetActive(true);
-    }
-
-    IEnumerator CheckRainCoroutine()
-    {
-        yield return null;
+        _animator.SetBool("IsRaining", true);
+        _rainParticle.Play();
     }
 
     private void StopRain()
     {
         _rain.SetActive(false);
+        _animator.SetBool("IsRaining", false);
+        _rainParticle.Stop();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

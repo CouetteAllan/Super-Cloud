@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
+    [SerializeField] private TextMeshProUGUI _timerText;
+
     private void Start()
     {
         GameManager.OnGameStateChanged += OnGameStateChanged;
@@ -29,5 +33,13 @@ public class UIManager : Singleton<UIManager>
                 //Display Game Over panel
                 break;
         }
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.CurrentState != GameState.InGame)
+            return;
+
+        _timerText.text = Mathf.RoundToInt(GameManager.Instance.CurrentTimer).ToString();
     }
 }
