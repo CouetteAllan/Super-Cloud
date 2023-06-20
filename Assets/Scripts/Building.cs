@@ -19,8 +19,14 @@ public class Building : MonoBehaviour, IRainable
     
     private void Start()
     {
+        TimeTickSystemDataHandler.OnTick += OnTick;
         _fire.SetActive(true);
         _currentState = BuildingState.OnFire;
+    }
+
+    private void OnTick(int tick)
+    {
+        Debug.Log($"Tick: {tick}");
     }
 
     public void TryToGetWet(PlayerController playerController)
@@ -31,6 +37,8 @@ public class Building : MonoBehaviour, IRainable
             Debug.Log("JE NE SUIS PLUS EN FEU");
             _currentState = BuildingState.Normal;
             _fire.SetActive(false);
+            TimeTickSystemDataHandler.OnTick -= OnTick;
+
         }
     }
 }

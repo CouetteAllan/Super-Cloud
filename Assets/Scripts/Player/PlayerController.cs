@@ -85,4 +85,12 @@ public class PlayerController : MonoBehaviour
             rainable.TryToGetWet(this);
         }
     }
+
+    private void OnDisable()
+    {
+        _playerActions.Player.Rain.started -= Rain_started;
+        _playerActions.Player.Rain.canceled -= Rain_canceled;
+        _playerActions.Player.Move.started -= Move_started;
+        _playerActions.Player.Move.canceled -= Move_canceled;
+    }
 }
