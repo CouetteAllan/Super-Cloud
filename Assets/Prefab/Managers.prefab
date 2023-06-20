@@ -251,7 +251,15 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  musics: []
+  musics:
+  - name: Chill1
+    clip: {fileID: 8300000, guid: b168e5327af7e7542902f2eb0885ab11, type: 3}
+    output: {fileID: -3403539666189480803, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
+    volume: 0.64
+    pitch: 0
+    loop: 1
+    playOnAwake: 1
+    source: {fileID: 0}
   audioMix: {fileID: 24100000, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
   masterVolume: 0
   musicVolume: 0
