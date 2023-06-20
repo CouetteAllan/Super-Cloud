@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem _rainParticle;
     [SerializeField] private BoxCollider2D _rainCollision;
     [SerializeField] private LayerMask _layerRain;
+    private bool _canRain = true;
 
     private Animator _animator;
 
@@ -43,6 +44,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rain.SetActive(false);
         _playerMovement = GetComponent<PlayerMovement>();
+        WaterDataHandler.OnWaterEmpty += OnWaterEmpty;
+        WaterDataHandler.OnWaterRefilling += OnWaterRefilling;
 
         _playerActions = new MPlayerInputActions();
         _playerActions.Player.Rain.started += Rain_started;
@@ -51,6 +54,17 @@ public class PlayerController : MonoBehaviour
         _playerActions.Player.Move.canceled += Move_canceled;
         _playerActions.Player.Move.performed += Move_performed;
         _playerActions.Enable();
+    }
+
+    private void OnWaterRefilling()
+    {
+        _canRain = true;
+    }
+
+    private void OnWaterEmpty()
+    {
+        _canRain = false;
+        Rain_canceled(new InputAction.CallbackContext { });
     }
 
     private void Move_performed(InputAction.CallbackContext obj)
@@ -65,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private void Rain_started(InputAction.CallbackContext context)
     {
-        if (_rain.activeSelf == false)
+        if (_rain.activeSelf == false && _canRain)
             DoRain();
         
     }
@@ -76,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
     private void DoRain()
     {
+        this.UsingWater();
         _rain.SetActive(true);
         _animator.SetBool("IsRaining", true);
         _rainParticle.Play();
@@ -83,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
     private void StopRain()
     {
+        this.StopUsingWater();
         _rain.SetActive(false);
         _animator.SetBool("IsRaining", false);
         _rainParticle.Stop();
@@ -112,5 +128,9 @@ public class PlayerController : MonoBehaviour
         _playerActions.Player.Rain.canceled -= Rain_canceled;
         _playerActions.Player.Move.started -= Move_started;
         _playerActions.Player.Move.canceled -= Move_canceled;
+        WaterDataHandler.OnWaterRefilling -= OnWaterRefilling;
+        WaterDataHandler.OnWaterEmpty -= OnWaterEmpty;
+
+
     }
 }

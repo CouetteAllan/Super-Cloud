@@ -13,6 +13,7 @@ public class Building : MonoBehaviour, IRainable
     [SerializeField] private float _baseFireLife = 10.0f;
     [SerializeField] private Image _fireLifeImage;
     [SerializeField] private SpriteRenderer _buildingSprite;
+    [SerializeField] private Sprite _ruinedBuilding;
     private bool _showFireLife;
     private float _fireLife;
     private int _currentTick;
@@ -44,7 +45,6 @@ public class Building : MonoBehaviour, IRainable
         if(_currentTick % (int)((_fireTime * 5)/3) == 0) //every 25 ticks, so every 5 seconds
         {
             IncreaseFire(++_currentFireIndex);
-            Debug.Log("Fire !" + _currentFireIndex);
             if (_currentFireIndex > _fire.Length)
                 ChangeBuildingState(BuildingState.Destroyed);
 
@@ -101,6 +101,8 @@ public class Building : MonoBehaviour, IRainable
             case BuildingState.Destroyed:
                 OnBuildingDestroyed?.Invoke(this);
                 SetFireActive(false);
+                _buildingSprite.color = _baseColor;
+                _buildingSprite.sprite = _ruinedBuilding;
                 this.enabled = false;
                 break;
         }

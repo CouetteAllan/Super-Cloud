@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 1906848985}
   - component: {fileID: 2113429472479700194}
   - component: {fileID: 4921927935306213268}
+  - component: {fileID: 2104880876202237041}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -488,6 +489,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2104880876202237041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113429472479700195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc22aeb78d57ac42823c02605e35741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxWater: 100
+  _drainWaterPerTick: 2
+  _refillWaterPerTick: 10
+  _graphTransform: {fileID: 2113429471541840028}
 --- !u!1 &5218856798747626201
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +532,7 @@ Transform:
   m_GameObject: {fileID: 5218856798747626201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.016615905, y: -0.24237889, z: 0}
-  m_LocalScale: {x: 0.79123336, y: 0.75498337, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2113429471541840028}
@@ -1156,8 +1173,8 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 180}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Rotation: {x: -0, y: 0, z: 180}
+    m_Scale: {x: 0.48750037, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
