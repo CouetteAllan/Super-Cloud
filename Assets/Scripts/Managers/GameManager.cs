@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private float _timer = 180.0f;
     [SerializeField] private int _maxBuildingDestroyed = 5;
+    public int MaxBuildingDestroyed { get => _maxBuildingDestroyed; }
 
     public static event Action<GameState> OnGameStateChanged;
 
