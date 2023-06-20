@@ -86,6 +86,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private void DelayLaunchGame()
+    {
+        StartCoroutine(DelayStartCoroutine());
+    }
+
+    private IEnumerator DelayStartCoroutine()
+    {
+
+        yield return null;
+    }
     private void LaunchTimer()
     {
         CurrentTimer = _timer;
