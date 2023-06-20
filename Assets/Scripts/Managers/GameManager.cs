@@ -51,6 +51,7 @@ public class GameManager : Singleton<GameManager>
         switch (CurrentState)
         {
             case GameState.MainMenu:
+                CameraManager.Instance.SwitchCamera(toCamGame: false);
                 break;
             case GameState.DebutGame:
                 LaunchTimer();
@@ -88,6 +89,7 @@ public class GameManager : Singleton<GameManager>
     private void LaunchTimer()
     {
         CurrentTimer = _timer;
+        CameraManager.Instance.SwitchCamera(toCamGame: true);
         ChangeGameState(GameState.InGame);
     }
 

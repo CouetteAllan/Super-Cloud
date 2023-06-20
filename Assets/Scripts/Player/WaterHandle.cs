@@ -112,6 +112,8 @@ public class WaterHandle : MonoBehaviour
 
     public void ExitRefuel()
     {
+        if (_state == WaterState.Using)
+            return;
         _state = WaterState.None;
         _onTopOfRefill = false;
         this.StopWaterRefilling();
