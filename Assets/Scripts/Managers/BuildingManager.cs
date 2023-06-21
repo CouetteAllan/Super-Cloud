@@ -76,7 +76,7 @@ public class BuildingManager : Singleton<BuildingManager>
             _canFireBuilding = true;
             _timerNextBuilding -= _datas.IntervalTime.Evaluate(_elapsedTime);
         }
-        if (_elapsedTime > 150.0f)
+        if (_elapsedTime > 135.0f)
             _twice = true;
     }
 

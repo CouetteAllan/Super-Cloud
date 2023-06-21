@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -11,9 +12,17 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _buildingPanel;
     [SerializeField] private GameObject _pauseGO;
     [SerializeField] private GameObject _mainMenuGO;
+    [SerializeField] private GameObject _creditsGO;
     [SerializeField] private GameObject _mainMenuBackground;
     [SerializeField] private GameObject _victoryGO;
     [SerializeField] private GameObject _gameOverGO;
+
+    [Header("Button GamepadFocus")]
+    [SerializeField] private Button _playButton;
+    [SerializeField] private Button _pauseResumeButton;
+    [SerializeField] private Button _backButton;
+    [SerializeField] private Button _victoryButton;
+    [SerializeField] private Button _gameOverButton;
 
     private Animator _pauseAnimator;
 
@@ -99,6 +108,7 @@ public class UIManager : Singleton<UIManager>
                 _victoryGO.SetActive(false);
                 _timerPanel.SetActive(false);
                 _buildingPanel.SetActive(false);
+                _playButton.Select();
                 break;
             case PanelType.Pause:
                 _pauseGO.SetActive(true);
@@ -106,6 +116,7 @@ public class UIManager : Singleton<UIManager>
                 _gameOverGO.SetActive(false);
                 _victoryGO.SetActive(false);
                 _timerPanel.SetActive(false);
+                _pauseResumeButton.Select();
                 break;
             case PanelType.Victory:
                 _victoryGO.SetActive(true);
@@ -113,12 +124,14 @@ public class UIManager : Singleton<UIManager>
                 _pauseGO.SetActive(false);
                 _gameOverGO.SetActive(false);
                 _timerPanel.SetActive(false);
+                _victoryButton.Select();
                 break;
             case PanelType.GameOver:
                 _gameOverGO.SetActive(true);
                 _mainMenuGO.SetActive(false);
                 _pauseGO.SetActive(false);
                 _victoryGO.SetActive(false);
+                _gameOverButton.Select();
 
                 break;
             case PanelType.None:
@@ -146,7 +159,16 @@ public class UIManager : Singleton<UIManager>
 
     public void Credits()
     {
+        _mainMenuGO.SetActive(false);
+        _creditsGO.SetActive(true);
+        _backButton.Select();
+    }
 
+    public void Back()
+    {
+        _mainMenuGO.SetActive(true);
+        _creditsGO.SetActive(false);
+        _playButton.Select();
     }
 
     public void Resume()
