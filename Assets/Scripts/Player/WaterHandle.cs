@@ -87,20 +87,19 @@ public class WaterHandle : MonoBehaviour
 
     private void OnStopUsingWater()
     {
+        _state = WaterState.None;
         if (_onTopOfRefill)
             Refuel();
-        else
-            _state = WaterState.None;
 
     }
 
 
     public void Refuel()
     {
+        _onTopOfRefill = true;
         if (_state == WaterState.Using)
             return;
         _state = WaterState.Refilling;
-        _onTopOfRefill = true;
         if(_currentWater < 0)
             _currentWater = 0;
         this.WaterRefilling();
@@ -109,10 +108,10 @@ public class WaterHandle : MonoBehaviour
 
     public void ExitRefuel()
     {
+        _onTopOfRefill = false;
         if (_state == WaterState.Using)
             return;
         _state = WaterState.None;
-        _onTopOfRefill = false;
         this.StopWaterRefilling();
     }
 
