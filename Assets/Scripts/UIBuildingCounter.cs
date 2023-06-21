@@ -30,12 +30,28 @@ public class UIBuildingCounter : MonoBehaviour
             buildingImages.Push(goImg);
         }
         Building.OnBuildingDestroyed += DestroyBuildingInUI;
+        GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
         this.gameObject.SetActive(false);
+
+    }
+
+    private void GameManager_OnGameStateChanged(GameState state)
+    {
+        if (state == GameState.MainMenu)
+        {
+
+        }
     }
 
     private void DestroyBuildingInUI(Building b)
     {
         if (buildingImages.Count <= 0) return;
         buildingImages.Pop().sprite = destroyedBuildingSprite;
+    }
+
+    private void OnDestroy()
+    {
+        Building.OnBuildingDestroyed -= DestroyBuildingInUI;
+        GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
     }
 }

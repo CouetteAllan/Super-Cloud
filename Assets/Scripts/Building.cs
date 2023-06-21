@@ -16,6 +16,7 @@ public class Building : MonoBehaviour, IRainable
     [SerializeField] private Sprite _ruinedBuilding;
     [SerializeField] private AudioSource _buildingAudioSource;
     [SerializeField] private ParticleSystem _buildingSmoke;
+    [SerializeField] private Animator _thunder;
 
     private bool _showFireLife;
     private float _fireLife;
@@ -113,6 +114,7 @@ public class Building : MonoBehaviour, IRainable
 
             case BuildingState.OnFire:
                 _currentFireIndex = 0;
+                _thunder.SetTrigger("Thunder");
                 TimeTickSystemDataHandler.OnTick += OnTick;
                 TimeTickSystemDataHandler.OnTickFaster += OnTickFaster;
                 SoundManager.Instance.Play("Thunder");
