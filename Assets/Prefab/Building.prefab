@@ -911,8 +911,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -779257344413149368, guid: d16ff0defc3383241ae2439e7ef74dba, type: 2}
   m_audioClip: {fileID: 8300000, guid: 753a3fe0819c98d419ca127bbcb6f4ca, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.293
-  m_Pitch: 1
+  m_Volume: 0.36
+  m_Pitch: 0.67
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1440,7 +1440,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2022,7 +2022,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2

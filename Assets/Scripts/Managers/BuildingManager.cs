@@ -13,6 +13,7 @@ public class BuildingManager : Singleton<BuildingManager>
     private float _timerNextBuilding = 0;
     private bool _canFireBuilding = false;
     private float _elapsedTime = 0.0f;
+    private bool _twice = false;
 
     private void Start()
     {
@@ -50,6 +51,7 @@ public class BuildingManager : Singleton<BuildingManager>
         if (state == GameState.DebutGame)
         {
             _elapsedTime = 0.0f;
+            _twice = false;
         }
     }
 
@@ -74,6 +76,8 @@ public class BuildingManager : Singleton<BuildingManager>
             _canFireBuilding = true;
             _timerNextBuilding -= _datas.IntervalTime.Evaluate(_elapsedTime);
         }
+        if (_elapsedTime > 120.0f)
+            _twice = true;
     }
 
     private void OnTick(uint tick)
@@ -86,10 +90,14 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void FireRandomBuilding()
     {
-        var randomIndex = Random.Range(0, Buildings.Count - 1);
-        BuildingsOnFire.Add(Buildings[randomIndex]);
-        Buildings[randomIndex].ChangeBuildingState(Building.BuildingState.OnFire);
-        Buildings.RemoveAt(randomIndex);
+        int nb = _twice ? 2 : 1;
+        for (int i = 0; i < nb; i++)
+        {
+            var randomIndex = Random.Range(0, Buildings.Count - 1);
+            BuildingsOnFire.Add(Buildings[randomIndex]);
+            Buildings[randomIndex].ChangeBuildingState(Building.BuildingState.OnFire);
+            Buildings.RemoveAt(randomIndex);
+        }
     }
 
     public void RemoveBuildingOnFire(Building building)
