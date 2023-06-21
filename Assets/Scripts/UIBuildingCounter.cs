@@ -12,7 +12,8 @@ public class UIBuildingCounter : MonoBehaviour
 
     [SerializeField] private GameObject buildingImage_PF;
 
-    private Stack<Image> buildingImages = new Stack<Image>();
+    private Image[] buildingImages = new Image[0];
+    private int currentBuildingImgIndex = 0;
 
     private void Reset()
     {
@@ -34,34 +35,34 @@ public class UIBuildingCounter : MonoBehaviour
     {
         if (state == GameState.MainMenu)
         {
-            //SetUI();
+            SetUI();
         }
-        if(state == GameState.InGame) SetUI();
     }
 
     private void SetUI()
     {
-        int INFINITELOOPFAILSAFE = 100;
-        while (buildingImages.Count > 0 && INFINITELOOPFAILSAFE > 0)
+        foreach (var item in buildingImages)
         {
-            INFINITELOOPFAILSAFE--;
-            Destroy(buildingImages.Pop().gameObject);
+            Destroy(item.gameObject);
         }
 
-        buildingImages = new Stack<Image>();
+        int maxBuildings = GameManager.Instance.MaxBuildingDestroyed;
+        buildingImages = new Image[maxBuildings];
         for (int i = 0; i < GameManager.Instance.MaxBuildingDestroyed; i++)
         {
             GameObject go = Instantiate(buildingImage_PF, buildingsImageGroup.transform);
             Image goImg = go.GetComponent<Image>();
             goImg.sprite = buildingsSprites[UnityEngine.Random.Range(0, buildingsSprites.Length)];
-            buildingImages.Push(goImg);
+            buildingImages[i] = goImg;
         }
+        currentBuildingImgIndex = 0;
     }
 
     private void DestroyBuildingInUI(Building b)
     {
-        if (buildingImages.Count <= 0) return;
-        buildingImages.Pop().sprite = destroyedBuildingSprite;
+        if (buildingImages.Length <= 0 || currentBuildingImgIndex >= buildingImages.Length) return;
+        buildingImages[currentBuildingImgIndex].sprite = destroyedBuildingSprite;
+        currentBuildingImgIndex++;
     }
 
     private void OnDestroy()
