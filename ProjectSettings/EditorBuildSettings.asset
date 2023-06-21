@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/AllanScene.unity
+    guid: 92bbced158f667c4d8493f8d1b3783fc
   m_configObjects: {}
