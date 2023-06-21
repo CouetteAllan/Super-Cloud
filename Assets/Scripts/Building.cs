@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Building : MonoBehaviour, IRainable
 {
     public static event Action<Building> OnBuildingDestroyed;
+    public static event Action<Building> OnBuildingFire;
 
     [SerializeField] private GameObject[] _fire;
     [SerializeField] private int _fireTime = 15;
@@ -122,6 +123,7 @@ public class Building : MonoBehaviour, IRainable
                 _buildingSmoke.Play();
                 _fireLife = _baseFireLife;
                 IncreaseFire(0);
+                OnBuildingFire?.Invoke(this);
                 break;
 
             case BuildingState.Destroyed:
