@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,14 +22,8 @@ public class UIBuildingCounter : MonoBehaviour
     private void Start()
     {
         if (GameManager.Instance == null) return;
-        buildingImages = new Stack<Image>();
-        for (int i = 0; i < GameManager.Instance.MaxBuildingDestroyed; i++)
-        {
-            GameObject go = Instantiate(buildingImage_PF, buildingsImageGroup.transform);
-            Image goImg = go.GetComponent<Image>();
-            goImg.sprite = buildingsSprites[Random.Range(0, buildingsSprites.Length)];
-            buildingImages.Push(goImg);
-        }
+        SetUI();
+
         Building.OnBuildingDestroyed += DestroyBuildingInUI;
         GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
         this.gameObject.SetActive(false);
@@ -40,6 +35,26 @@ public class UIBuildingCounter : MonoBehaviour
         if (state == GameState.MainMenu)
         {
 
+        }
+        if (state == GameState.InGame) SetUI();
+    }
+
+    private void SetUI()
+    {
+        int INFINITELOOPFAILSAFE = 100;
+        while (buildingImages.Count > 0 && INFINITELOOPFAILSAFE > 0)
+        {
+            INFINITELOOPFAILSAFE--;
+            Destroy(buildingImages.Pop().GameObject);
+        }
+
+        buildingImages = new Stack<Image>();
+        for (int i = 0; i < GameManager.Instance.MaxBuildingDestroyed; i++)
+        {
+            GameObject go = Instantiate(buildingImage_PF, buildingsImageGroup.transform);
+            Image goImg = go.GetComponent<Image>();
+            goImg.sprite = buildingsSprites[Random.Range(0, buildingsSprites.Length)];
+            buildingImages.Push(goImg);
         }
     }
 
