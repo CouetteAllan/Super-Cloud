@@ -28,10 +28,8 @@ public class PostProcessControl : MonoBehaviour
     IEnumerator ThunderCoroutine()
     {
         _volumeSettings.m_Profile = _thunderProfile;
-        Debug.Log(_volumeSettings.m_Profile);
         yield return new WaitForSeconds(0.1f);
         _volumeSettings.m_Profile = _baseProfile;
-        Debug.Log(_volumeSettings.m_Profile);
 
     }
 

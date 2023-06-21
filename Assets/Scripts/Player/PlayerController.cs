@@ -89,11 +89,13 @@ public class PlayerController : MonoBehaviour
     {
         _canRain = true;
         _animator.SetBool("Refuel", true);
+        _animator.SetBool("CanRain", true);
     }
 
     private void OnWaterEmpty()
     {
         _canRain = false;
+        _animator.SetBool("CanRain", false);
         Rain_canceled(new InputAction.CallbackContext { });
         SoundManager.Instance.StopSound("Rain");
 
