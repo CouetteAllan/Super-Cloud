@@ -3402,7 +3402,15 @@ PrefabInstance:
       objectReference: {fileID: 925524199}
     - target: {fileID: 4016023035886950651, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: _timer
-      value: 30
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016023035886950651, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: _maxBuildingDestroyed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268311816604670413, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6641971865115684925, guid: 287102ed62e43f8478ca16cf5857652d, type: 3}
       propertyPath: m_AnchorMax.y

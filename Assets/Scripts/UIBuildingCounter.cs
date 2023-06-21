@@ -12,7 +12,7 @@ public class UIBuildingCounter : MonoBehaviour
 
     [SerializeField] private GameObject buildingImage_PF;
 
-    private Stack<Image> buildingImages;
+    private Stack<Image> buildingImages = new Stack<Image>();
 
     private void Reset()
     {
@@ -34,9 +34,9 @@ public class UIBuildingCounter : MonoBehaviour
     {
         if (state == GameState.MainMenu)
         {
-
+            //SetUI();
         }
-        if (state == GameState.InGame) SetUI();
+        if(state == GameState.InGame) SetUI();
     }
 
     private void SetUI()
@@ -45,7 +45,7 @@ public class UIBuildingCounter : MonoBehaviour
         while (buildingImages.Count > 0 && INFINITELOOPFAILSAFE > 0)
         {
             INFINITELOOPFAILSAFE--;
-            Destroy(buildingImages.Pop().GameObject);
+            Destroy(buildingImages.Pop().gameObject);
         }
 
         buildingImages = new Stack<Image>();
@@ -53,7 +53,7 @@ public class UIBuildingCounter : MonoBehaviour
         {
             GameObject go = Instantiate(buildingImage_PF, buildingsImageGroup.transform);
             Image goImg = go.GetComponent<Image>();
-            goImg.sprite = buildingsSprites[Random.Range(0, buildingsSprites.Length)];
+            goImg.sprite = buildingsSprites[UnityEngine.Random.Range(0, buildingsSprites.Length)];
             buildingImages.Push(goImg);
         }
     }

@@ -55,6 +55,8 @@ public class GameManager : Singleton<GameManager>
                 Time.timeScale = 1.0f;
                 CameraManager.Instance.SwitchCamera(toCamGame: false);
                 _orage.SetActive(false);
+                DestroyedBuilding = 0;
+
                 break;
             case GameState.DebutGame:
                 DelayLaunchGame();
