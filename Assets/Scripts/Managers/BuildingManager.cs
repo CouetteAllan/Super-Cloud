@@ -7,10 +7,12 @@ public class BuildingManager : Singleton<BuildingManager>
     [SerializeField] private BuildingManagerDatas _datas;
     public List<Building> Buildings { get; private set; } = new List<Building>();
     public List<Building> BuildingsOnFire { get; private set; } = new List<Building>();
+    public List<Building> BuildingsDestroyed { get; private set; } = new List<Building>();
 
     private int _nbBuildingOnFire = 0;
     private float _timerNextBuilding = 0;
     private bool _canFireBuilding = false;
+    private float _elapsedTime = 0.0f;
 
     private void Start()
     {
@@ -20,7 +22,7 @@ public class BuildingManager : Singleton<BuildingManager>
             Buildings.Add(building.GetComponent<Building>());
         }
 
-        foreach(var building in Buildings)
+        foreach (var building in Buildings)
         {
             building.ChangeBuildingState(Building.BuildingState.Normal);
         }
@@ -32,41 +34,51 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void OnGameStateChanged(GameState state)
     {
-        if(state == GameState.Victory || state == GameState.MainMenu)
+        if (state == GameState.Victory || state == GameState.MainMenu)
         {
-            foreach (var building in BuildingsOnFire)
+
+            foreach (var building in BuildingsDestroyed)
             {
                 building.ChangeBuildingState(Building.BuildingState.Normal);
                 Buildings.Add(building);
             }
+
             BuildingsOnFire.Clear();
+            BuildingsDestroyed.Clear();
+        }
+
+        if (state == GameState.DebutGame)
+        {
+            _elapsedTime = 0.0f;
         }
     }
 
     private void OnBuildingDestroyed(Building building)
     {
         BuildingsOnFire.Remove(building);
+        BuildingsDestroyed.Add(building);
     }
 
     private void Update()
     {
         if (GameManager.Instance.CurrentState != GameState.InGame)
             return;
+        _elapsedTime += Time.deltaTime;
 
-        if (BuildingsOnFire.Count >= Mathf.CeilToInt(_datas.BuildingNumber.Evaluate(Time.realtimeSinceStartup)) || _canFireBuilding)
+        if (BuildingsOnFire.Count >= Mathf.CeilToInt(_datas.BuildingNumber.Evaluate(_elapsedTime)) || _canFireBuilding)
             return;
 
         _timerNextBuilding += Time.deltaTime;
-        if(_timerNextBuilding > _datas.IntervalTime.Evaluate(Time.realtimeSinceStartup))
+        if (_timerNextBuilding > _datas.IntervalTime.Evaluate(_elapsedTime))
         {
             _canFireBuilding = true;
-            _timerNextBuilding -= _datas.IntervalTime.Evaluate(Time.realtimeSinceStartup);
+            _timerNextBuilding -= _datas.IntervalTime.Evaluate(_elapsedTime);
         }
     }
 
     private void OnTick(uint tick)
     {
-        if(!_canFireBuilding) return;
+        if (!_canFireBuilding) return;
 
         FireRandomBuilding();
         _canFireBuilding = false;
@@ -74,7 +86,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void FireRandomBuilding()
     {
-        var randomIndex = Random.Range(0,Buildings.Count - 1);
+        var randomIndex = Random.Range(0, Buildings.Count - 1);
         BuildingsOnFire.Add(Buildings[randomIndex]);
         Buildings[randomIndex].ChangeBuildingState(Building.BuildingState.OnFire);
         Buildings.RemoveAt(randomIndex);
@@ -90,6 +102,7 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         TimeTickSystemDataHandler.OnTick -= OnTick;
         Building.OnBuildingDestroyed -= OnBuildingDestroyed;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
 
     }
 }

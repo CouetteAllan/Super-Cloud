@@ -15,6 +15,7 @@ public class Building : MonoBehaviour, IRainable
     [SerializeField] private SpriteRenderer _buildingSprite;
     [SerializeField] private Sprite _ruinedBuilding;
     [SerializeField] private AudioSource _buildingAudioSource;
+    [SerializeField] private ParticleSystem _buildingSmoke;
 
     private bool _showFireLife;
     private float _fireLife;
@@ -22,6 +23,7 @@ public class Building : MonoBehaviour, IRainable
     private int _currentFireIndex;
     private bool isRaining;
     private Color _baseColor;
+    private Sprite _baseSprite;
 
     public enum BuildingState
     {
@@ -36,6 +38,16 @@ public class Building : MonoBehaviour, IRainable
     {
         //ChangeBuildingState(BuildingState.OnFire);
         _baseColor = _buildingSprite.color;
+        _baseSprite = _buildingSprite.sprite;
+        GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
+    }
+
+    private void GameManager_OnGameStateChanged(GameState state)
+    {
+        if(state == GameState.MainMenu || state == GameState.Victory)
+        {
+            ChangeBuildingState(BuildingState.Normal);
+        }
     }
 
     private void OnTick(uint tick)
@@ -93,7 +105,9 @@ public class Building : MonoBehaviour, IRainable
                 Debug.Log("JE NE SUIS PLUS EN FEU");
                 BuildingManager.Instance.RemoveBuildingOnFire(this);
                 _buildingSprite.color = _baseColor;
+                _buildingSprite.sprite = _baseSprite;
                 _buildingAudioSource.Stop();
+                _buildingSmoke.Stop();
 
                 break;
 
@@ -103,6 +117,7 @@ public class Building : MonoBehaviour, IRainable
                 TimeTickSystemDataHandler.OnTickFaster += OnTickFaster;
                 SoundManager.Instance.Play("Thunder");
                 _buildingAudioSource.Play();
+                _buildingSmoke.Play();
                 _fireLife = _baseFireLife;
                 IncreaseFire(0);
                 break;
@@ -116,6 +131,7 @@ public class Building : MonoBehaviour, IRainable
                 _buildingSprite.sprite = _ruinedBuilding;
                 this.enabled = false;
                 _buildingAudioSource.Stop();
+                _buildingSmoke.Stop();
                 break;
         }
     }
