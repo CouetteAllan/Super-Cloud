@@ -325,10 +325,10 @@ GameObject:
   - component: {fileID: 2113429472479700193}
   - component: {fileID: 2113429472479700207}
   - component: {fileID: 2113429472479700192}
+  - component: {fileID: 2104880876202237041}
   - component: {fileID: 1906848985}
   - component: {fileID: 2113429472479700194}
   - component: {fileID: 4921927935306213268}
-  - component: {fileID: 2104880876202237041}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -431,6 +431,47 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2104880876202237041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113429472479700195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc22aeb78d57ac42823c02605e35741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxWater: 100
+  _drainWaterPerTick: 2
+  _refillWaterPerTick: 10
+  _graphTransform: {fileID: 2113429471541840028}
+  _rainParticleTransform: {fileID: 1664306462612884929}
+  _speedChangeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5
+      inSlope: 0.49438766
+      outSlope: 0.49438766
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.32916668
+    - serializedVersion: 3
+      time: 1
+      value: 8
+      inSlope: 0.055373233
+      outSlope: 0.055373233
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.38333333
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!58 &1906848985
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -489,47 +530,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2104880876202237041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113429472479700195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc22aeb78d57ac42823c02605e35741, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxWater: 100
-  _drainWaterPerTick: 2
-  _refillWaterPerTick: 10
-  _graphTransform: {fileID: 2113429471541840028}
-  _rainParticleTransform: {fileID: 1664306462612884929}
-  _speedChangeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 5
-      inSlope: 0.49438766
-      outSlope: 0.49438766
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.32916668
-    - serializedVersion: 3
-      time: 1
-      value: 8
-      inSlope: 0.055373233
-      outSlope: 0.055373233
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.38333333
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &5218856798747626201
 GameObject:
   m_ObjectHideFlags: 0

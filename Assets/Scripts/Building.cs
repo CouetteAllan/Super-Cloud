@@ -84,7 +84,6 @@ public class Building : MonoBehaviour, IRainable
         if (_fireLife <= 0)
         {
             ChangeBuildingState(BuildingState.Normal);
-            _fireLifeImage.transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -101,43 +100,58 @@ public class Building : MonoBehaviour, IRainable
         switch (_currentState)
         {
             case BuildingState.Normal:
-                SetFireActive(false);
-                TimeTickSystemDataHandler.OnTick -= OnTick;
-                TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
-                Debug.Log("JE NE SUIS PLUS EN FEU");
-                BuildingManager.Instance.RemoveBuildingOnFire(this);
-                _buildingSprite.color = _baseColor;
-                _buildingSprite.sprite = _baseSprite;
-                _buildingAudioSource.Stop();
-                _buildingSmoke.Stop();
-
+                NormalState();
                 break;
 
             case BuildingState.OnFire:
-                _currentFireIndex = 0;
-                _thunder.SetTrigger("Thunder");
-                TimeTickSystemDataHandler.OnTick += OnTick;
-                TimeTickSystemDataHandler.OnTickFaster += OnTickFaster;
-                SoundManager.Instance.Play("Thunder");
-                _buildingAudioSource.Play();
-                _buildingSmoke.Play();
-                _fireLife = _baseFireLife;
-                IncreaseFire(0);
-                OnBuildingFire?.Invoke(this);
+                FireState();
                 break;
 
             case BuildingState.Destroyed:
-                TimeTickSystemDataHandler.OnTick -= OnTick;
-                TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
-                OnBuildingDestroyed?.Invoke(this);
-                SetFireActive(false);
-                _buildingSprite.color = _baseColor;
-                _buildingSprite.sprite = _ruinedBuilding;
-                this.enabled = false;
-                _buildingAudioSource.Stop();
-                _buildingSmoke.Stop();
+                DestroyedState();
                 break;
         }
+    }
+
+    private void NormalState()
+    {
+        SetFireActive(false);
+        _fireLifeImage.transform.parent.gameObject.SetActive(false);
+        TimeTickSystemDataHandler.OnTick -= OnTick;
+        TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
+        BuildingManager.Instance.RemoveBuildingOnFire(this);
+        _buildingSprite.color = _baseColor;
+        _buildingSprite.sprite = _baseSprite;
+        _buildingAudioSource.Stop();
+        _buildingSmoke.Stop();
+    }
+
+    private void FireState()
+    {
+        _currentFireIndex = 0;
+        _thunder.SetTrigger("Thunder");
+        TimeTickSystemDataHandler.OnTick += OnTick;
+        TimeTickSystemDataHandler.OnTickFaster += OnTickFaster;
+        SoundManager.Instance.Play("Thunder");
+        _buildingAudioSource.Play();
+        _buildingSmoke.Play();
+        _fireLife = _baseFireLife;
+        IncreaseFire(0);
+        OnBuildingFire?.Invoke(this);
+    }
+
+    private void DestroyedState()
+    {
+        TimeTickSystemDataHandler.OnTick -= OnTick;
+        TimeTickSystemDataHandler.OnTickFaster -= OnTickFaster;
+        OnBuildingDestroyed?.Invoke(this);
+        SetFireActive(false);
+        _fireLifeImage.transform.parent.gameObject.SetActive(false);
+        _buildingSprite.color = _baseColor;
+        _buildingSprite.sprite = _ruinedBuilding;
+        this.enabled = false;
+        _buildingAudioSource.Stop();
+        _buildingSmoke.Stop();
     }
 
     private void SetFireActive(bool active)

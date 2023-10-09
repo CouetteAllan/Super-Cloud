@@ -111,14 +111,12 @@ public class GameManager : Singleton<GameManager>
 
     private void Victory()
     {
-        Debug.Log("C'EST LA VICTOIRE OMG WOW");
         Time.timeScale = 0.5f;
     }
 
     private void GameOver()
     {
         Time.timeScale = 0.5f;
-        Debug.Log("T'ES MAUVAIS");
     }
 
     private void OnDisable()
